@@ -1,0 +1,127 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.mmaioe</groupId>
+  <artifactId>kylo-integrations-cassandra</artifactId>
+  <version>0.8.2.1-SNAPSHOT</version>
+  
+  <packaging>pom</packaging>
+  <modules>
+    <module>nifi</module>
+    <module>spark</module>
+  </modules>
+
+
+  <properties>
+    <nifi.version>1.3.0</nifi.version>
+    <jetty.version>9.4.2.v20170220</jetty.version>
+    <javax.servlet.version>3.1.0</javax.servlet.version>
+    <spring.version>4.2.5.RELEASE</spring.version>
+    <commons.lang3.version>3.4</commons.lang3.version>
+    <datastax.spark.version>2.0.5</datastax.spark.version>
+    <datastax.spark.java.version>1.5.2</datastax.spark.java.version>
+    <!--<databricks.spark.csv.version>1.3.0</databricks.spark.csv.version>-->
+    <scala.version>2.11</scala.version>
+    <scala.binary.version>2.11</scala.binary.version>
+    <spark.version>2.1.0</spark.version>
+    <spark.binary.version>2.1.0</spark.binary.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Spark dependency -->
+      <!--<dependency>-->
+        <!--<groupId>com.databricks</groupId>-->
+        <!--<artifactId>spark-csv_${scala.binary.version}</artifactId>-->
+        <!--<version> ${databricks.spark.csv.version}</version>-->
+      <!--</dependency>-->
+      <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-core_2.11</artifactId>
+        <version>${spark.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-streaming_2.11</artifactId>
+        <version>${spark.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-sql_2.11</artifactId>
+        <version>${spark.version}</version>
+      </dependency>
+
+      <!-- Data Stax Spark -->
+      <dependency>
+        <groupId>com.datastax.spark</groupId>
+        <artifactId>spark-cassandra-connector_2.11</artifactId>
+        <version>${datastax.spark.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.datastax.spark</groupId>
+        <artifactId>spark-cassandra-connector-java_2.11</artifactId>
+        <version>${datastax.spark.java.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-codec</groupId>
+        <artifactId>commons-codec</artifactId>
+        <version>1.9</version>
+      </dependency>
+
+      <!-- Apache Commons -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons.lang3.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.12</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.nifi</groupId>
+        <artifactId>nifi-api</artifactId>
+        <version>${nifi.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.nifi</groupId>
+        <artifactId>nifi-processor-utils</artifactId>
+        <version>${nifi.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>1.3.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.nifi</groupId>
+        <artifactId>nifi-mock</artifactId>
+        <version>${nifi.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>
