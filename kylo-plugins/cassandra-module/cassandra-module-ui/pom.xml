@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>cassandra-module-ui</artifactId>
+  <groupId>com.mmaioe.kylo.plugins</groupId>
+  <version>0.8.3.2-SNAPSHOT</version>
+  <name>cassandra-module-ui</name>
+
+  <properties>
+    <findbugs.version>3.0.1</findbugs.version>
+    <guava.version>19.0</guava.version>
+    <spring.version>4.2.5.RELEASE</spring.version>
+  </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <version>${findbugs.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.thinkbiganalytics.kylo</groupId>
+      <artifactId>kylo-ui-api</artifactId>
+      <version>0.8.3.2-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+</project>

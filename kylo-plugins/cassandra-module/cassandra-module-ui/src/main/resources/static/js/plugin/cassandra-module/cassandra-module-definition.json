@@ -1,0 +1,27 @@
+{
+  "moduleName": "cassandraToggleModule",
+  "moduleJsUrl":"plugin/cassandra-module/module",
+  "states": [
+    {
+      "state": "cassandraToggleModule",
+      "url": "/cassandraToggleModule",
+      "params": {
+        "name": null
+      }
+    }
+  ],
+  "navigation": [
+    {
+      "toggleGroupName": "Cassandra",
+      "text": "Cassandra",
+      "narrowText": "Cassandra",
+      "links": [
+        {
+          "sref":"cassandraKeyspaceModule",
+          "text":"Table",
+          "icon":"view_comfy"
+        }
+      ]
+    }
+  ]
+}

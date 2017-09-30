@@ -1,0 +1,22 @@
+{
+  "moduleName": "cassandraTableDataModule",
+  "moduleJsUrl":"plugin/cassandra-table-data-module/module",
+  "states": [
+    {
+      "state": "cassandraTableDataModule",
+      "url": "/cassandraTableDataModule",
+      "params": {
+        "keyspace": null,
+        "table": null
+      }
+    }
+  ],
+  "navigation": [
+    {
+      "text": "TableData",
+      "narrowText": "TableData",
+      "links": [
+      ]
+    }
+  ]
+}

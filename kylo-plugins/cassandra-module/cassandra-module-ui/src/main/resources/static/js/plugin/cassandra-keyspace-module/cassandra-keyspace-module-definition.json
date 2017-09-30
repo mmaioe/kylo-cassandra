@@ -1,0 +1,21 @@
+{
+  "moduleName": "cassandraKeyspaceModule",
+  "moduleJsUrl":"plugin/cassandra-keyspace-module/module",
+  "states": [
+    {
+      "state": "cassandraKeyspaceModule",
+      "url": "/cassandraKeyspaceModule",
+      "params": {
+        "name": null
+      }
+    }
+  ],
+  "navigation": [
+    {
+      "text": "Keyspace",
+      "narrowText": "Keyspace",
+      "links": [
+      ]
+    }
+  ]
+}
