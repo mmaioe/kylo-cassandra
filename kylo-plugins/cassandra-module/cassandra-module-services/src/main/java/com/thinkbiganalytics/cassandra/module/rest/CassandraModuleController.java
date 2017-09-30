@@ -106,10 +106,12 @@ public class CassandraModuleController {
 
             for (int i = 0; i < metadata.size(); i++) {
 
-                if(metadataClass.get(i).equals("varint")) {
+                if(metadataClass.get(i).equals("int")) {
                     rowStr.add(row.getInt(i)+"");
                 }else if(metadataClass.get(i).equals("double")) {
                     rowStr.add(row.getDouble(i) + "");
+                }else if(metadataClass.get(i).equals("float")) {
+                    rowStr.add(row.getFloat(i) + "");
                 }else if(metadataClass.get(i).equals("boolean")){
                     rowStr.add(row.getBool(i)+"");
                 }else if(metadataClass.get(i).equals("text") || metadataClass.get(i).equals("varchar")){

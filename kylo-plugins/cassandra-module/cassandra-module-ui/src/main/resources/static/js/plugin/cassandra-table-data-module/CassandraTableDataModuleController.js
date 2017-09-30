@@ -21,6 +21,7 @@ define(['angular', 'plugin/cassandra-table-data-module/module-name'], function (
                     console.log(response.data);
                     self.data = response.data.data;
                     self.metadata = response.data.metadata;
+
                 }
             })
         }
