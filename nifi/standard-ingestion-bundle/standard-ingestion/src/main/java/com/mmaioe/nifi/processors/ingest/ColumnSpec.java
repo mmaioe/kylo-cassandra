@@ -150,12 +150,21 @@ public class ColumnSpec{
     public static String toCassandraDataTypeString(ColumnSpec[] columns){
         StringBuffer sb = new StringBuffer();
         for (int i=0;i<columns.length-1;i++){
-            sb.append(columns[i].toCassandrDataTypeString()+",");
+            sb.append(columns[i].toCassandraDataTypeString()+",");
         }
 
-        return sb.toString()+columns[columns.length-1].toCassandrDataTypeString();
+        return sb.toString()+columns[columns.length-1].toCassandraDataTypeString();
     }
-    public String toCassandrDataTypeString(){
+
+    public static String toInvalidCassandraDataTypeString(ColumnSpec[] columns){
+        StringBuffer sb = new StringBuffer();
+        for (int i=0;i<columns.length-1;i++){
+            sb.append(columns[i].toInvalidCassandraDataTypeString()+",");
+        }
+
+        return sb.toString()+columns[columns.length-1].toInvalidCassandraDataTypeString();
+    }
+    public String toCassandraDataTypeString(){
         String str = this.name+" ";
 
         if(this.dataType.equals("string")){
@@ -163,6 +172,16 @@ public class ColumnSpec{
         }else{
             str += this.dataType;
         }
+
+        if(this.pk){
+            return str+" PRIMARY KEY";
+        }
+
+        return str;
+    }
+
+    public String toInvalidCassandraDataTypeString(){
+        String str = this.name+" text";
 
         if(this.pk){
             return str+" PRIMARY KEY";

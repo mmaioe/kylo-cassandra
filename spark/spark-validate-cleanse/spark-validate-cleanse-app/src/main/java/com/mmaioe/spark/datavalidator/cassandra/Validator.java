@@ -52,6 +52,7 @@ import scala.Function1;
  *
  * spark-submit --master local --class com.mmaioe.spark.datavalidator.cassandra.Validator --name CassandraTest /Users/mi186020/OSS/kylo-integrations-cassandra/spark/spark-validate-cleanse/spark-validate-cleanse-app/target/kylo-cassandra-spark-validate-cleanse-app-0.8.2.1-SNAPSHOT-jar-with-dependencies.jar cs_test users g /Users/mi186020/test_field_policy.json /Users/mi186020/test_field_structure.json /Users/mi186020/test.csv
  * spark-submit --master local --class com.mmaioe.spark.datavalidator.cassandra.Validator --name CassandraTest /Users/mi186020/OSS/kylo-integrations-cassandra/spark/spark-validate-cleanse/spark-validate-cleanse-app/target/kylo-cassandra-spark-validate-cleanse-app-0.8.2.1-SNAPSHOT-jar-with-dependencies.jar cs_test iphone g /private/tmp/kylo-nifi/spark/cs_test/iphone/1504758250377/iphone_field_policy.json /private/tmp/kylo-nifi/spark/cs_test/iphone/1504758250377/iphone_field_structure.json /var/dropzone/userdata1.csv
+ * spark-submit --master local --class com.mmaioe.spark.datavalidator.cassandra.Validator --name CassandraTest /Users/mi186020/OSS/kylo-integrations-cassandra/spark/spark-validate-cleanse/spark-validate-cleanse-app/target/kylo-cassandra-spark-validate-cleanse-app-0.8.2.1-SNAPSHOT-jar-with-dependencies.jar chaduke okonomiyaki g /Users/mi186020/test_field_policy.json /Users/mi186020/okonomiyaki_field_structure.json  /Users/mi186020/userdata1.csv
  *
  * Created by mi186020 on 2017/09/04.
  */
@@ -178,7 +179,7 @@ public class Validator implements Serializable{
             }).map(new Function<CleansedRowResult, CassandraRow>() {
                 @Override
                 public CassandraRow call(CleansedRowResult cleansedRowResult) throws Exception {
-                    return transformRowToCassandraRow(cleansedRowResult.row);
+                    return transformRowToInvalidCassandraRow(cleansedRowResult.row);
                 }
             });
 
@@ -203,6 +204,21 @@ public class Validator implements Serializable{
 
         List<Object> columnValues = new ArrayList<Object>();
         for(int i=0;i<row.size();i++) columnValues.add(row.get(i));
+
+//        return new CassandraRow(scala.collection.JavaConversions.asScalaBuffer(columnNames).toList().toIndexedSeq(),scala.collection.JavaConversions.asScalaBuffer(columnValues).toList().toIndexedSeq());
+        return CassandraRDDUtil.ToCassandraRow(
+            scala.collection.JavaConversions.asScalaBuffer(columnNames).toList(),
+            scala.collection.JavaConversions.asScalaBuffer(columnValues).toList()
+        );
+    }
+
+    private CassandraRow transformRowToInvalidCassandraRow(Row row){
+        List<String> columnNames = new ArrayList<String>();
+        Iterator<String> key = policyMap.keySet().iterator();
+        while(key.hasNext()) columnNames.add(key.next());
+
+        List<Object> columnValues = new ArrayList<Object>();
+        for(int i=0;i<row.size();i++) columnValues.add(row.get(i)+"");
 
 //        return new CassandraRow(scala.collection.JavaConversions.asScalaBuffer(columnNames).toList().toIndexedSeq(),scala.collection.JavaConversions.asScalaBuffer(columnValues).toList().toIndexedSeq());
         return CassandraRDDUtil.ToCassandraRow(

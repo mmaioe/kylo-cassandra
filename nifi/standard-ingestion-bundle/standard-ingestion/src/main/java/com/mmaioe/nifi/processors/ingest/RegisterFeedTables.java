@@ -139,16 +139,16 @@ public class RegisterFeedTables extends AbstractNifiProcessor {
 
             final String key_space_with_options = context.getProperty(CREATE_KEY_SPACE_WITH_OPTION).evaluateAttributeExpressions(flowFile).getValue();
 
-            getLog().info("Let's create a set of keyspaces");
+            getLog().info("Let's create a set of keyspaces : New Version");
             getLog().info("category:"+source);
             getLog().info("feed:"+entity);
             getLog().info("CREATE KEYSPACE IF NOT EXISTS "+source+" WITH "+key_space_with_options+";");
             getLog().info("CREATE TABLE IF NOT EXISTS "+source+"."+entity+"("+ColumnSpec.toCassandraDataTypeString(columnSpecs)+")");
-
+            getLog().info("CREATE TABLE IF NOT EXISTS "+source+"."+entity+INVALID_TABLE_SUFFIX+"("+ColumnSpec.toInvalidCassandraDataTypeString(columnSpecs)+")");
             conn.execute("CREATE KEYSPACE IF NOT EXISTS "+source+" WITH "+key_space_with_options+";");
 
             conn.execute("CREATE TABLE IF NOT EXISTS "+source+"."+entity+"("+ColumnSpec.toCassandraDataTypeString(columnSpecs)+")");
-            conn.execute("CREATE TABLE IF NOT EXISTS "+source+"."+entity+INVALID_TABLE_SUFFIX+"("+ColumnSpec.toCassandraDataTypeString(columnSpecs)+")");
+            conn.execute("CREATE TABLE IF NOT EXISTS "+source+"."+entity+INVALID_TABLE_SUFFIX+"("+ColumnSpec.toInvalidCassandraDataTypeString(columnSpecs)+")");
 
             session.transfer(flowFile,REL_SUCCESS);
         } catch (Exception e) {
